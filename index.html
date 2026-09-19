@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NIAZI | Shamsulhadi NIAZI</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+:root{
+  --bg:#050505;
+  --card:#0c0c0c;
+  --text:#fff;
+  --muted:#888;
+  --line:#222;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  overflow-x:hidden;
+}
+
+/* PARTICLES */
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+}
+
+.particle{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:#aaa;
+  border-radius:50%;
+  opacity:.35;
+  animation:floatParticle linear infinite;
+}
+
+@keyframes floatParticle{
+  from{
+    transform:translateY(110vh);
+  }
+  to{
+    transform:translateY(-20vh);
+  }
+}
+
+/* MOUSE / TOUCH GLOW */
+
+#glow{
+  position:fixed;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle,#444,transparent 68%);
+  opacity:.12;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:-1;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:75px;
+  padding:0 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(5,5,5,.72);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  z-index:1000;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  letter-spacing:5px;
+}
+
+.logo span{
+  color:#666;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+}
+
+.nav-links a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:13px;
+  transition:.3s;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+.menu{
+  display:none;
+  font-size:25px;
+  cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:130px 8% 80px;
+  position:relative;
+}
+
+.hero-content{
+  max-width:900px;
+  animation:heroIn 1.2s ease;
+}
+
+@keyframes heroIn{
+  from{
+    opacity:0;
+    transform:translateY(45px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.badge{
+  display:inline-block;
+  border:1px solid #333;
+  padding:9px 15px;
+  border-radius:30px;
+  color:#999;
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:clamp(58px,12vw,125px);
+  line-height:.85;
+  letter-spacing:-6px;
+}
+
+.hero h1 span{
+  color:#666;
+}
+
+.hero-description{
+  max-width:650px;
+  color:#999;
+  font-size:18px;
+  line-height:1.8;
+  margin-top:30px;
+}
+
+.typing{
+  margin-top:20px;
+  color:#ccc;
+  font-size:20px;
+}
+
+.cursor{
+  animation:blink .7s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0}
+}
+
+.buttons{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:35px;
+}
+
+.btn{
+  display:inline-block;
+  padding:14px 25px;
+  border:1px solid #555;
+  color:white;
+  text-decoration:none;
+  transition:.35s;
+}
+
+.btn:hover{
+  background:#fff;
+  color:#000;
+  transform:translateY(-3px);
+}
+
+.btn.secondary{
+  border-color:#222;
+  color:#aaa;
+}
+
+.btn.secondary:hover{
+  color:white;
+  background:#111;
+}
+
+/* SCROLL INDICATOR */
+
+.scroll{
+  position:absolute;
+  bottom:30px;
+  left:8%;
+  color:#555;
+  font-size:11px;
+  letter-spacing:3px;
+  animation:bounce 1.8s infinite;
+}
+
+@keyframes bounce{
+  50%{transform:translateY(8px)}
+}
+
+/* SECTIONS */
+
+section{
+  padding:110px 8%;
+  min-height:70vh;
+}
+
+.section-label{
+  color:#666;
+  letter-spacing:4px;
+  font-size:11px;
+  margin-bottom:12px;
+}
+
+.section-title{
+  font-size:48px;
+  margin-bottom:45px;
+}
+
+.section-title span{
+  color:#666;
+}
+
+/* REVEAL */
+
+.reveal{
+  opacity:0;
+  transform:translateY(45px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ABOUT */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:25px;
+}
+
+.about-card{
+  padding:40px;
+  background:linear-gradient(145deg,#111,#080808);
+  border:1px solid var(--line);
+  border-radius:15px;
+  transition:.4s;
+}
+
+.about-card:hover{
+  border-color:#555;
+  transform:translateY(-7px);
+}
+
+.about-card p{
+  color:#999;
+  line-height:2;
+  font-size:17px;
+}
+
+.quote-card{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:250px;
+}
+
+.quote{
+  color:#aaa;
+  font-size:24px;
+  line-height:1.5;
+}
+
+/* SKILLS */
+
+.skills{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.skill{
+  background:#0b0b0b;
+  border:1px solid var(--line);
+  padding:30px 22px;
+  border-radius:14px;
+  transition:.4s;
+}
+
+.skill:hover{
+  transform:translateY(-10px);
+  border-color:#666;
+  box-shadow:0 20px 45px #000;
+}
+
+.icon{
+  font-size:32px;
+  margin-bottom:18px;
+}
+
+.skill h3{
+  margin-bottom:10px;
+}
+
+.skill p{
+  color:#777;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:35px;
+}
+
+.stat{
+  padding:30px;
+  border:1px solid var(--line);
+  background:#090909;
+  text-align:center;
+}
+
+.stat-number{
+  font-size:42px;
+  font-weight:bold;
+}
+
+.stat-text{
+  color:#666;
+  margin-top:8px;
+}
+
+/* PROJECTS */
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.project{
+  min-height:260px;
+  padding:30px;
+  background:linear-gradient(145deg,#111,#080808);
+  border:1px solid var(--line);
+  border-radius:15px;
+  transition:transform .15s ease,border-color .3s;
+  transform-style:preserve-3d;
+}
+
+.project:hover{
+  border-color:#666;
+}
+
+.number{
+  color:#555;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.project h3{
+  font-size:24px;
+  margin:28px 0 14px;
+}
+
+.project p{
+  color:#888;
+  line-height:1.7;
+}
+
+/* CONTACT */
+
+.contact-box{
+  max-width:800px;
+}
+
+.contact-box p{
+  color:#888;
+  margin-bottom:25px;
+}
+
+.contact-link{
+  display:block;
+  padding:19px;
+  margin:12px 0;
+  color:#fff;
+  text-decoration:none;
+  background:#0b0b0b;
+  border:1px solid var(--line);
+  border-radius:10px;
+  transition:.35s;
+}
+
+.contact-link:hover{
+  border-color:#666;
+  transform:translateX(8px);
+}
+
+/* FOOTER */
+
+footer{
+  padding:40px 20px;
+  text-align:center;
+  border-top:1px solid var(--line);
+  color:#555;
+  font-size:13px;
+}
+
+/* TOP BUTTON */
+
+#topBtn{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:45px;
+  height:45px;
+  border:1px solid #444;
+  background:#111;
+  color:white;
+  border-radius:50%;
+  cursor:pointer;
+  display:none;
+  z-index:900;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .nav-links{
+    position:absolute;
+    top:75px;
+    left:0;
+    width:100%;
+    display:none;
+    flex-direction:column;
+    gap:0;
+    background:#080808;
+    border-bottom:1px solid #222;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .nav-links a{
+    padding:18px 7%;
+    border-bottom:1px solid #181818;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .hero{
+    padding:125px 6% 80px;
+  }
+
+  .hero h1{
+    font-size:62px;
+  }
+
+  .scroll{
+    left:6%;
+  }
+
+  section{
+    padding:90px 6%;
+  }
+
+  .section-title{
+    font-size:38px;
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .skills{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .projects{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:500px){
+
+  .skills{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:54px;
+  }
+
+  .hero-description{
+    font-size:16px;
+  }
+
+  .typing{
+    font-size:17px;
+  }
+}
+.profile-photo {
+    width: 280px;
+    height: 280px;
+    margin: 30px auto;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(135deg, #00e5ff, #7c3cff, #00e5ff);
+    box-shadow: 0 0 35px rgba(0, 229, 255, 0.35);
+    animation: profileFloat 4s ease-in-out infinite;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+@keyframes profileFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 55px rgba(0, 229, 255, 0.6);
+}
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    display: block;
+    transition: 0.35s ease;
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.25));
+}
+
+.logo img:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.65));
+}
+
+</style>
+</head>
+
+<body>
+    <div class="profile-photo">
+    <img src="profile.jpg" alt="Shamsulhadi NIAZI">
+</div>
+<a href="#home" class="logo">
+    <img src="logo.png" alt="NIAZI Logo">
+</a>
+
+<div id="particles"></div>
+<div id="glow"></div>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="logo">
+NIAZI<span>.</span>
+</div>
+
+<div class="menu" id="menu">☰</div>
+
+<div class="nav-links" id="navLinks">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="badge">
+PERSONAL PORTFOLIO
+</div>
+
+<h1>
+Shamsulhadi<br>
+<span>NIAZI</span>
+</h1>
+
+<div class="typing">
+I'm a <span id="typing"></span><span class="cursor">|</span>
+</div>
+
+<p class="hero-description">
+Welcome to NIAZI — my personal digital space
+where technology, creativity, artificial intelligence
+and future ideas come together.
+</p>
+
+<div class="buttons">
+
+<a href="#about" class="btn">
+Explore My World →
+</a>
+
+<a href="#contact" class="btn secondary">
+Contact Me
+</a>
+
+</div>
+
+</div>
+
+<div class="scroll">
+SCROLL ↓
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="reveal">
+
+<div class="section-label">
+01 / ABOUT
+</div>
+
+<h2 class="section-title">
+About <span>Me</span>
+</h2>
+
+<div class="about-grid">
+
+<div class="about-card">
+
+<p>
+Hello, I'm <strong>Shamsulhadi NIAZI</strong>.
+
+Welcome to my personal website.
+
+I am interested in technology, web development,
+artificial intelligence and cybersecurity.
+
+NIAZI is my personal digital space where I can
+share my journey, projects, ideas and future goals.
+
+I am always learning, experimenting and building
+new things with technology.
+</p>
+
+</div>
+
+<div class="about-card quote-card">
+
+<div class="quote">
+“Learn.<br>
+Build.<br>
+Create.”
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section id="skills" class="reveal">
+
+<div class="section-label">
+02 / EXPERTISE
+</div>
+
+<h2 class="section-title">
+My <span>Skills</span>
+</h2>
+
+<div class="skills">
+
+<div class="skill">
+<div class="icon">💻</div>
+<h3>Web Development</h3>
+<p>Building modern and responsive websites.</p>
+</div>
+
+<div class="skill">
+<div class="icon">🤖</div>
+<h3>Artificial Intelligence</h3>
+<p>Exploring AI tools and creative technology.</p>
+</div>
+
+<div class="skill">
+<div class="icon">🔐</div>
+<h3>Cyber Security</h3>
+<p>Learning digital security and protection.</p>
+</div>
+
+<div class="skill">
+<div class="icon">⚡</div>
+<h3>Technology</h3>
+<p>Exploring new technologies and ideas.</p>
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<div class="stat-number counter" data-target="4">0</div>
+<div class="stat-text">Main Skills</div>
+</div>
+
+<div class="stat">
+<div class="stat-number counter" data-target="3">0</div>
+<div class="stat-text">Projects</div>
+</div>
+
+<div class="stat">
+<div class="stat-number">∞</div>
+<div class="stat-text">Future Ideas</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects" class="reveal">
+
+<div class="section-label">
+03 / WORK
+</div>
+
+<h2 class="section-title">
+My <span>Projects</span>
+</h2>
+
+<div class="projects">
+
+<div class="project tilt">
+
+<div class="number">
+01 / PROJECT
+</div>
+
+<h3>NIAZI Website</h3>
+
+<p>
+A personal portfolio website built
+with HTML, CSS and JavaScript.
+</p>
+
+</div>
+
+
+<div class="project tilt">
+
+<div class="number">
+02 / PROJECT
+</div>
+
+<h3>AI Projects</h3>
+
+<p>
+Creative projects exploring artificial
+intelligence and AI-generated content.
+</p>
+
+</div>
+
+
+<div class="project tilt">
+
+<div class="number">
+03 / FUTURE
+</div>
+
+<h3>Coming Soon</h3>
+
+<p>
+More technology projects and ideas
+will be added here.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="reveal">
+
+<div class="section-label">
+04 / CONTACT
+</div>
+
+<h2 class="section-title">
+Let's <span>Connect</span>
+</h2>
+
+<div class="contact-box">
+
+<p>
+You can connect with me through these platforms.
+Replace the example links with your real accounts.
+</p>
+
+<a class="contact-link" href="mailto: khansms700@gmail.com">
+📧 Email — khansms700@gmail.com
+</a>
+
+<a class="contact-link" href="#">
+📱 Instagram — @shams_k.d7
+</a>
+
+<a class="contact-link" href="https://wa.me/message/MRX2YPS3AVBVA1">
+💬 WhatsApp — +93 778609281
+</a>
+
+</div>
+
+</section>
+
+
+<footer>
+
+© 2026 NIAZI — Shamsulhadi NIAZI
+
+</footer>
+
+
+<button id="topBtn">↑</button>
+
+
+<script>
+
+/* =========================
+   TYPING EFFECT
+========================= */
+
+const words = [
+  "Web Developer",
+  "AI Explorer",
+  "Technology Enthusiast",
+  "Cybersecurity Learner"
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+const typing = document.getElementById("typing");
+
+function typeEffect(){
+
+  const word = words[wordIndex];
+
+  if(!deleting){
+
+    typing.textContent =
+      word.substring(0,charIndex + 1);
+
+    charIndex++;
+
+    if(charIndex === word.length){
+
+      deleting = true;
+
+      setTimeout(typeEffect,1200);
+
+      return;
+    }
+
+  }else{
+
+    typing.textContent =
+      word.substring(0,charIndex - 1);
+
+    charIndex--;
+
+    if(charIndex === 0){
+
+      deleting = false;
+
+      wordIndex++;
+
+      if(wordIndex >= words.length){
+        wordIndex = 0;
+      }
+
+    }
+
+  }
+
+  setTimeout(typeEffect,deleting ? 45 : 90);
+}
+
+typeEffect();
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menu = document.getElementById("menu");
+const navLinks = document.getElementById("navLinks");
+
+menu.addEventListener("click",function(){
+
+  navLinks.classList.toggle("active");
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+  link.addEventListener("click",()=>{
+
+    navLinks.classList.remove("active");
+
+  });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const reveals =
+document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+
+  reveals.forEach(element=>{
+
+    const position =
+      element.getBoundingClientRect().top;
+
+    if(position < window.innerHeight - 100){
+
+      element.classList.add("show");
+
+    }
+
+  });
+
+}
+
+window.addEventListener("scroll",revealOnScroll);
+
+revealOnScroll();
+
+
+/* =========================
+   MOUSE / TOUCH GLOW
+========================= */
+
+const glow =
+document.getElementById("glow");
+
+document.addEventListener("mousemove",(event)=>{
+
+  glow.style.left = event.clientX + "px";
+  glow.style.top = event.clientY + "px";
+
+});
+
+document.addEventListener("touchmove",(event)=>{
+
+  if(event.touches.length > 0){
+
+    glow.style.left =
+      event.touches[0].clientX + "px";
+
+    glow.style.top =
+      event.touches[0].clientY + "px";
+
+  }
+
+},{passive:true});
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+const particles =
+document.getElementById("particles");
+
+for(let i=0;i<35;i++){
+
+  const particle =
+    document.createElement("div");
+
+  particle.className="particle";
+
+  particle.style.left =
+    Math.random()*100 + "%";
+
+  particle.style.animationDuration =
+    (8 + Math.random()*15) + "s";
+
+  particle.style.animationDelay =
+    Math.random()*10 + "s";
+
+  particle.style.opacity =
+    .15 + Math.random()*.35;
+
+  particles.appendChild(particle);
+
+}
+
+
+/* =========================
+   3D PROJECT CARDS
+========================= */
+
+document.querySelectorAll(".tilt").forEach(card=>{
+
+  card.addEventListener("mousemove",(event)=>{
+
+    const rect =
+      card.getBoundingClientRect();
+
+    const x =
+      event.clientX - rect.left;
+
+    const y =
+      event.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX =
+      ((y-centerY)/centerY)*-5;
+
+    const rotateY =
+      ((x-centerX)/centerX)*5;
+
+    card.style.transform =
+      `perspective(700px)
+       rotateX(${rotateX}deg)
+       rotateY(${rotateY}deg)
+       translateY(-5px)`;
+
+  });
+
+  card.addEventListener("mouseleave",()=>{
+
+    card.style.transform =
+      "perspective(700px) rotateX(0) rotateY(0)";
+
+  });
+
+});
+
+
+/* =========================
+   COUNTER ANIMATION
+========================= */
+
+let countersStarted = false;
+
+function startCounters(){
+
+  if(countersStarted) return;
+
+  const skillsSection =
+    document.getElementById("skills");
+
+  const position =
+    skillsSection.getBoundingClientRect().top;
+
+  if(position < window.innerHeight - 100){
+
+    countersStarted = true;
+
+    document.querySelectorAll(".counter")
+    .forEach(counter=>{
+
+      const target =
+        Number(counter.dataset.target);
+
+      let current = 0;
+
+      const interval =
+        setInterval(()=>{
+
+          current++;
+
+          counter.textContent = current;
+
+          if(current >= target){
+
+            clearInterval(interval);
+
+          }
+
+        },180);
+
+    });
+
+  }
+
+}
+
+window.addEventListener("scroll",startCounters);
+
+
+/* =========================
+   BACK TO TOP
+========================= */
+
+const topBtn =
+document.getElementById("topBtn");
+
+window.addEventListener("scroll",()=>{
+
+  if(window.scrollY > 500){
+
+    topBtn.style.display="block";
+
+  }else{
+
+    topBtn.style.display="none";
+
+  }
+
+});
+
+topBtn.addEventListener("click",()=>{
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+});
+
+</script>
+
+</body>
+</html>
